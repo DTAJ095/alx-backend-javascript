@@ -18,5 +18,12 @@
   },
   "dependencies": {
     "semistandard": "^17.0.0"
+  },
+  "name": "my-cool-package",
+  "devDependencies": {
+    "semistandard": "*"
+  },
+  "scripts": {
+    "test": "semistandard && node my-normal-tests-littered-with-semicolons.js"
   }
 }
