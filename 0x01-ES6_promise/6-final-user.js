@@ -5,7 +5,7 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
   try {
     const user = await signUpUser(firstName, lastName);
     await uploadPhoto(fileName);
-    console.log(`${user.firstName} ${user.lastName}`);
+    //console.log(`${user.firstName} ${user.lastName}`);
   } catch (err) {
     console.log(err.message);
   }
