@@ -7,7 +7,8 @@ export default class EVCar extends Car {
   }
 
   // Method
-  static cloneCar() {
-    return new (this.prototype.constructor)();
+  cloneCar() {
+    const NewObj = super.constructor[Symbol.species];
+    return new NewObj();
   }
 }
