@@ -7,11 +7,7 @@ export default class EVCar extends Car {
   }
 
   // Method
-  static get [Symbol.species] () {
-    return this.prototype.constructor;
-  }
-
-  cloneCar() {
-    return new (this.constructor[Symbol.species])();
+  static cloneCar() {
+    return new (this.prototype.constructor)();
   }
 }
