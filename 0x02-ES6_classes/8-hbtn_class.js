@@ -11,11 +11,9 @@ export default class HolbertonClass {
   }
 
   // Method
-  [Symbol.toPrimitive] (type) {
+  [Symbol.toPrimitive](type) {
     if (type === 'string') {
       return this._location;
-    } else {
-      return this._size;
-    }
+    } return this._size;
   }
 }
