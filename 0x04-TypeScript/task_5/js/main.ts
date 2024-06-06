@@ -1,3 +1,4 @@
+/* interface for major credits */
 export interface MajorCredits {
     credits: number & { __brand: 'MajorCredits.credits' };
 }
