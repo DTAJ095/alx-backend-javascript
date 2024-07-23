@@ -1,7 +1,6 @@
 // Reading a file synchronously with Node JS
 const fs = require('fs');
 
-
 const countStudents = (path) => {
   if (!fs.existsSync(path)) {
     throw new Error('Cannot load the database');
@@ -10,7 +9,7 @@ const countStudents = (path) => {
     throw new Error('Cannot load the database');
   }
   const data = fs
-    .readFileSync(path, {encoding: 'utf-8'})
+    .readFileSync(path, { encoding: 'utf-8' })
     .toString('utf-8')
     .trim()
     .split('\n');
