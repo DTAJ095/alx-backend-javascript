@@ -23,14 +23,14 @@ const countStudents = (dBPath) => new Promise((resolve, reject) => {
         const dbFields = fileLines[0].split(',');
         const studentNames = dbFields.slice(
           0,
-          dbFields.length - 1
+          dbFields.length - 1,
         );
 
         for (const line of fileLines.slice(1)) {
           const studentRecord = line.split(',');
           const studentValues = studentRecord.slice(
             0,
-            studentRecord.length - 1
+            studentRecord.length - 1,
           );
           const field = studentRecord[studentRecord.length - 1];
           if (!Object.keys(students).includes(field)) {
@@ -38,20 +38,20 @@ const countStudents = (dBPath) => new Promise((resolve, reject) => {
           }
           const studentEntries = studentNames.map((name, index) => [
             name,
-            studentValues[index]
+            studentValues[index],
           ]);
           students[field].push(Object.fromEntries(studentEntries));
         }
 
         const totalStudents = Object.values(students).reduce(
-          (pre, cur) => (pre || []).length + cur.length
+          (pre, cur) => (pre || []).length + cur.length,
         );
         results.push(`Number of students: ${totalStudents}`);
         for (const [field, group] of Object.entries(students)) {
           results.push([
             `Number of students in ${field}: ${group.length}.`,
             'List:',
-            group.map((student) => student.firstname).join(', ')
+            group.map((student) => student.firstname).join(', '),
           ].join(' '));
         }
         resolve(results.join('\n'));
@@ -63,7 +63,7 @@ const countStudents = (dBPath) => new Promise((resolve, reject) => {
 const SERVER_ROUTE_HANDLERS = [
   {
     route: '/',
-    handler (_, res) {
+    handler(_, res) {
       const responseText = 'Hello Holberton School!';
 
       res.setHeader('Content-Type', 'text/plain');
@@ -74,7 +74,7 @@ const SERVER_ROUTE_HANDLERS = [
   },
   {
     route: '/students',
-    handler (_, res) {
+    handler(_, res) {
       const globalResponse = ['This is the list of our students'];
 
       countStudents(DB_FILE)
