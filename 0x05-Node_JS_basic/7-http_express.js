@@ -3,7 +3,6 @@ const express = require('express');
 const fs = require('fs');
 
 const PORT = 1245;
-const HOST = 'localhost';
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : 'database.csv';
 const app = express();
 
@@ -13,8 +12,8 @@ const countStudents = (dataPath) => new Promise((resolve, reject) => {
     reject(new Error('Cannot load the database'));
   }
   if (dataPath) {
-    fs.readFile(dataPath, (err, data) => {
-      if (err) {
+    fs.readFile(dataPath, (error, data) => {
+      if (error) {
         reject(new Error('Cannot load the database'));
       }
       if (data) {
@@ -37,7 +36,7 @@ const countStudents = (dataPath) => new Promise((resolve, reject) => {
           if (!Object.keys(students).includes(field)) {
             students[field] = [];
           }
-          const studentEntries = studentPropNames.map((name, idx) => [
+          const studentEntries = studentNames.map((name, idx) => [
             name,
             studentValues[idx],
           ]);
