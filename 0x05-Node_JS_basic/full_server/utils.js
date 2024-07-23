@@ -25,7 +25,7 @@ const readDatabase = (path) => new Promise((resolve, reject) => {
                 const dbFields = lines[0].split(',');
                 const studentNames = dbFields.slice(0, dbFields.length - 1);
 
-                for  (const line of lines.slice(1)) {
+                for (const line of lines.slice(1)) {
                     const studentData = line.split(',');
                     const studentValues = studentData.slice(0, studentData.length - 1);
                     const field = studentData[studentData.length - 1];
