@@ -2,34 +2,43 @@
 const fs = require('fs');
 
 const countStudents = (path) => new Promise((resolve, reject) => {
-  fs.readFile(path, 'utf8', (err, data) => {
+  fs.readFile(path, { encoding: 'utf-8' }, (err, data) => {
     if (err) {
-      reject(Error('Cannot load the database'));
-      return;
+      reject(new Error('Cannot load the database'));
     }
-    const students = {};
-    const dbFields = data.split('\n')[0].split(',');
-    const studentNames = dbFields.slice(0, dbFields.length - 1);
+    if (data) {
+      const fileLines = data
+        .toString('utf-8')
+        .trim()
+        .split('\n');
+      const students = {};
+      const dbFields = fileLines[0].split(',');
+      const studentNames = dbFields
+        .slice(0, dbFields.length - 1);
 
-    for (const line of data.split('\n').slice(1)) {
-      const studentData = line.split(',');
-      const studentValues = studentData.slice(0, studentData.length - 1);
-      const field = studentData[studentData.length - 1];
-      if (!Object.keys(students).includes(field)) {
-        students[field] = [];
+      for (const line of fileLines.slice(1)) {
+        const studentRecord = line.split(',');
+        const studentValues = studentRecord
+          .slice(0, studentRecord.length - 1);
+        const field = studentRecord[studentRecord.length - 1];
+        if (!Object.keys(students).includes(field)) {
+          students[field] = [];
+        }
+        const studentEntries = studentNames
+          .map((propName, idx) => [propName, studentValues[idx]]);
+        students[field].push(Object.fromEntries(studentEntries));
       }
-      const student = studentValues.map((value, index) => [value, studentNames[index]]);
-      students[field].push(Object.fromEntries(student));
-    }
 
-    const totalStudents = Object.values(students).reduce((acc, val) => (acc || 0).length + val.length, 0);
-    console.log(`Number of students: ${totalStudents}`);
-
-    for (const [field, value] of Object.entries(students)) {
-      const names = value.map((student) => student.name).join(', ');
-      console.log(`Number of students in ${field}: ${value.length}. List: ${names}`);
+      const totalStudents = Object
+        .values(students)
+        .reduce((pre, cur) => (pre || []).length + cur.length);
+      console.log(`Number of students: ${totalStudents}`);
+      for (const [field, group] of Object.entries(students)) {
+        const names = group.map((student) => student.firstname).join(', ');
+        console.log(`Number of students in ${field}: ${group.length}. List: ${names}`);
+      }
+      resolve(true);
     }
-    resolve();
   });
 });
 
