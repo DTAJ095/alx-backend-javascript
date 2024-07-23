@@ -1,17 +1,16 @@
 // StudentController class
 import readDatabase from '../utils';
-VALID_MAJORS = ['CS', 'SWE'];
+
+const VALID_MAJORS = ['CS', 'SWE'];
 
 class StudentsController {
-  static getAllStudents (request, response) {
+  static getAllStudents(request, response) {
     const path = process.argv.length > 2 ? process.argv[2] : '';
 
     readDatabase(path).then((students) => {
       const globalResponse = ['This is the list of our students'];
 
-      const alphabetically = (a, b) => {
-        return a.name.localeCompare(b.name);
-      };
+      const alphabetically = (a, b) => a[0].localeCompare(b[0]);
 
       for (const [field, value] of Object.entries(students).sort(alphabetically)) {
         response.push([`Number of students in ${field}: ${value.length}.`,
@@ -24,9 +23,9 @@ class StudentsController {
       });
   }
 
-  static getAllStudentsByMajor (request, response) {
+  static getAllStudentsByMajor(request, response) {
     const path = process.argv.length > 2 ? process.argv[2] : '';
-    const major = request.params.major;
+    const { major } = request.params.major;
 
     if (!VALID_MAJORS.includes(major)) {
       response.status(500).send('Major parameter must be CS or SWE');
@@ -36,7 +35,7 @@ class StudentsController {
     readDatabase(path).then((students) => {
       let globalResponse = '';
 
-      if (Objects.keys(students).includes(major)) {
+      if (Object.keys(students).includes(major)) {
         globalResponse = `List: ${students[major].map((student) => student.firstname).join(', ')}`;
       }
       response.status(200).send(globalResponse.join('\n'));
