@@ -70,7 +70,7 @@ const SERVER_ROUTE_HANDLERS = [
       res.setHeader('Content-Length', responseText.length);
       res.statusCode = 200;
       res.write(Buffer.from(responseText));
-    }
+    },
   },
   {
     route: '/students',
@@ -94,8 +94,8 @@ const SERVER_ROUTE_HANDLERS = [
           res.statusCode = 200;
           res.write(Buffer.from(responseText));
         });
-    }
-  }
+    },
+  },
 ];
 
 app.on('request', (req, res) => {
