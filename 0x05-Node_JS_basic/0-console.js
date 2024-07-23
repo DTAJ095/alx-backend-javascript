@@ -6,7 +6,7 @@
  */
 const displayMessage = (message) => {
   console.log(message);
-}
+};
 
 /**
  * Exports displayMessage function
