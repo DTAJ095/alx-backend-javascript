@@ -6,7 +6,6 @@ const PORT = 1245;
 const DB_FILE = process.argv.length > 2 ? process.argv[2] : 'database.csv';
 const app = express();
 
-
 const countStudents = (dataPath) => new Promise((resolve, reject) => {
   if (!dataPath) {
     reject(new Error('Cannot load the database'));
@@ -89,6 +88,5 @@ app.get('/students', (_, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT}`);
 });
-
 
 module.exports = app;
