@@ -11,6 +11,12 @@ const countStudents = (path) => new Promise((resolve, reject) => {
     if (!path) {
         reject(Error('Cannot load the database'));
     }
+    if (typeof path !== 'string') {
+        reject(Error('Cannot load the database'));
+    }
+    if (path === '') {
+        reject(Error('Cannot load the database'));
+    }
     if (path) {
         fs.readFile(path, (err, data) => {
             if (err) {
