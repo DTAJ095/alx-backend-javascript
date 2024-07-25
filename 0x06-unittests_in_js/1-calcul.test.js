@@ -8,7 +8,7 @@ describe('calculateNumber', () => {
     });
 
     it('equal positive numbers (alternate)', () => {
-      assert.strictEqual(calculateNumber('SUM', 2.2, 1.8), 4);
+      assert.strictEqual(calculateNumber('SUM', 2.4, 1.8), 4);
     });
 
     it('equal negative numbers', () => {
@@ -16,7 +16,7 @@ describe('calculateNumber', () => {
     });
 
     it('equal negative numbers (alternate)', () => {
-      assert.strictEqual(calculateNumber('SUM', -2.2, -1.8), -4);
+      assert.strictEqual(calculateNumber('SUM', -2.4, -1.8), -4);
     });
 
     it('negative and positive numbers', () => {
@@ -38,7 +38,7 @@ describe('calculateNumber', () => {
     });
 
     it('equal positive numbers (alternate)', () => {
-      assert.strictEqual(calculateNumber('SUBTRACT', 2.2, 1.8), 0);
+      assert.strictEqual(calculateNumber('SUBTRACT', 2.4, 1.8), 0);
     });
 
     it('equal negative numbers', () => {
@@ -46,7 +46,7 @@ describe('calculateNumber', () => {
     });
 
     it('equal negative numbers (alternate)', () => {
-      assert.strictEqual(calculateNumber('SUBTRACT', -2.2, -1.8), 0);
+      assert.strictEqual(calculateNumber('SUBTRACT', -2.4, -1.8), 0);
     });
 
     it('negative and positive numbers', () => {

@@ -11,4 +11,4 @@ const calculateNumber = (type, a, b) => {
     return 0;
 };
 
-module.export = calculateNumber;
+module.exports = calculateNumber;
