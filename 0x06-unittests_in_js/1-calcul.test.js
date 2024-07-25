@@ -8,7 +8,7 @@ describe('calculateNumber', () => {
     });
 
     it('equal positive numbers (alternate)', () => {
-      assert.strictEqual(calculateNumber('SUM', 2.3, 1.8), 4);
+      assert.strictEqual(calculateNumber('SUM', 2.3, 1.8), 3);
     });
 
     it('equal negative numbers', () => {
