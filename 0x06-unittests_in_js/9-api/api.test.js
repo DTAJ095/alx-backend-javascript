@@ -15,7 +15,7 @@ describe('API Integration test', () => {
   it('GET /cart/:id returns correct response for valid :id', (done) => {
     request.get(`${URL_API}/cart/10`, (_err, response, body) => {
       expect(response.statusCode).to.be.equal(200);
-      expect(body).to.be.equal('Payment methods for cart 101');
+      expect(body).to.be.equal('Payment methods for cart 10');
       done();
     });
   });
@@ -28,7 +28,7 @@ describe('API Integration test', () => {
   });
 
   it('GET /cart/:id returns 404 response for non-numeric values in :id', (done) => {
-    request.get(`${API_URL}/cart/d200-44a5-9de6`, (_err, response, _body) => {
+    request.get(`${URL_API}/cart/d200-44a5-9de6`, (_err, response, _body) => {
       expect(response.statusCode).to.be.equal(404);
       done();
     });
