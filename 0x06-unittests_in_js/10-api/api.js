@@ -15,8 +15,9 @@ app.get('/cart/:id([0-9]+)', (request, response) => {
 
 app.post('/login', (request, response) => {
   let username = '';
+
   if (request.body) {
-	    username = request.body.userName;
+    username = request.body.userName;
   }
   response.send(`Welcome ${username}`);
 });
